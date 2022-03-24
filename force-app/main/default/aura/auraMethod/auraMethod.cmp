@@ -1,0 +1,33 @@
+<!-- c:auraMethod -->
+<aura:component controller="SimpleServerSideController">
+    <aura:method name="echo"
+      description="Sample method with server-side call">
+        <aura:attribute name="callback" type="Function" />
+    </aura:method>
+    <aura:attribute name="getFirstNameResult" type="List" default="[]"/>
+        <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+
+ <lightning:input aura:id="eligibleTenor"
+                  label="Max Eligible Tenor" value="{!v.getFirstNameResult}" name="eligibleTenor" />    
+    <p>This component has an aura:method definition.</p>
+    <div class="slds-table_edit_container slds-is-relative">
+        <table class="slds-table slds-table_bordered">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">First name</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <aura:iteration items="{!v.getFirstNameResult}" var="obj" >
+                <tr>
+                    <aura:if isTrue="{!not(empty(obj))}">
+                       
+                     <td>{!obj} </td>
+                     
+                    </aura:if>
+                </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>  
+</aura:component>

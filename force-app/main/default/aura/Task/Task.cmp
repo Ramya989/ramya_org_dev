@@ -1,0 +1,27 @@
+<aura:component controller="ContactsController" >
+    <aura:attribute name="getFirstNameList" type="String[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:attribute name="getFirstNameResult" type="List" default="[]"/>
+    <aura:attribute name="showBoolean" type="Boolean" default="false" />
+    <aura:attribute name="isAuthorized" type="Boolean" default="false" />
+    <aura:handler name="change" value="{!v.showBoolean}" action="{!c.getLastname}" />
+    <div class="slds-table_edit_container slds-is-relative">
+        <table class="slds-table slds-table_bordered">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">First name</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <aura:iteration items="{!v.getFirstNameResult}" var="obj" loaded="{or(v.showBoolean, v.isAuthorized) }">
+                <tr>
+                    <aura:if isTrue="{!not(empty(obj.FirstName))}">
+                     <td>{!obj.FirstName} </td>
+                     
+                    </aura:if>
+                </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>  
+</aura:component>

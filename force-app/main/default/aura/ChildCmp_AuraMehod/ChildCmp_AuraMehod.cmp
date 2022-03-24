@@ -1,0 +1,13 @@
+<aura:component >
+	<aura:method name="sampleMethod" action="{!c.doAction}" access="public">
+        <aura:attribute name="param" type="Interger"/>
+    </aura:method>	
+    <aura:attribute name="add" type="Integer" default="0"/>
+    <aura:attribute name="onclick" type="Aura.action"/>
+    <div class="slds-m-around_xx-large">        
+        <p>Aura method child calling {!v.add}</p>
+    </div>
+    
+     <lightning:button variant="brand" label="Call Parent Method"
+                          onclick="{!v.onclick}" />
+</aura:component>

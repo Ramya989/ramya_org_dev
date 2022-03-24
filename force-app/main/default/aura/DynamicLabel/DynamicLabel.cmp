@@ -1,0 +1,9 @@
+<aura:component >
+    <aura:attribute name="mylabel" type="String[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:iteration items="{!v.mylabel}" var="mylabel">
+        <lightning:formattedRichText value="{!$Label.c.data}"/>
+       <div> {!$Label.c.data}</div>
+    </aura:iteration>
+    
+</aura:component>

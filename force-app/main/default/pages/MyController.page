@@ -1,0 +1,7 @@
+<apex:page Controller="MyController">
+   
+
+
+<apex:outputText > {!$Label[mylabel]} </apex:outputText>
+
+</apex:page>

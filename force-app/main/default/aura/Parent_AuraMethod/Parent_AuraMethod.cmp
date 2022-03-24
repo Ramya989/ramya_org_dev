@@ -1,0 +1,15 @@
+<aura:component >
+	<aura:attribute name="add" type="Integer" default="0"/>
+    <aura:attribute name="aura_action" type="Integer" default="0"/>
+    <div class="slds-m-around_xx-large">        
+        <p>Aura action parent calling {!v.aura_action}</p>
+    </div>
+    
+    <!-- Calling child method from parent ++++  and also making communication
+           In parent invoking child methods -->
+    <lightning:button variant="brand" label="Call child Method"
+                          onclick="{!c.click}" />    
+    
+    <!-- calling parent from child component -->   
+    <c:ChildCmp_AuraMehod aura:id="childComponent"  onclick="{!c.parentAction}"/>
+</aura:component>

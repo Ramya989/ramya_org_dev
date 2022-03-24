@@ -1,0 +1,8 @@
+<!-- c:auraMethodCaller.cmp -->
+<aura:component  controller="SimpleServerSideController" >
+    <p>Parent component calls aura:method in child component</p>
+  
+     <aura:handler name="init" value="{!this}" action="{!c.callAuraMethodServerTrip}"/>
+         <aura:attribute name="GgetFirstNameResult" type="List" default="[]"/> 
+      <c:auraMethod aura:id="child" getFirstNameResult="{!v.GgetFirstNameResult}" />
+</aura:component>

@@ -1,0 +1,22 @@
+<aura:component >
+    <aura:method name="sampleMethod" action="{!c.childSave}" access="PUBLIC" />
+    <aura:attribute name="getLastNameId" type="String" />
+    <aura:attribute name="individualRec" type="List" />
+    
+    <div class="slds-table_edit_container slds-is-relative">
+        <table class="slds-table slds-table_bordered">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">First name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.individualRec}" var="obj" indexVar="index">
+                    <tr>
+                        <td aura:id="{!obj.Id}">{!obj.FirstName} {!v.getLastNameId} </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div> 
+</aura:component>
