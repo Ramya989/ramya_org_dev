@@ -10,7 +10,7 @@ export default class Customvftolwc extends LightningElement {
     connectedCallback(){  debugger;
         getAccountDetails(({accId: this.recordId}))
         .then(result => {
-            alert('ssssswwssssssssssssss=========='+(result)); 
+            alert('ramya git change=========='+(result)); 
         })
         .catch();
         
