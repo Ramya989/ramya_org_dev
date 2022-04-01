@@ -1,0 +1,58 @@
+<template>
+   
+    <lightning-card title='Persons List' icon-name="custom:custom63">
+        <template if:true={showPills}>
+            <c-util-Lightning-Pill-Container get-persons-list={accountList} handle-pill={handleItemRemove}></c-util-Lightning-Pill-Container>
+        </template>
+        <div class="slds-m-around_medium">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" >
+                            <lightning-input class="label-hidden"
+                                type="checkbox" label="e"
+                                value={selectAll} 
+                                onchange={handleSelectAll}
+                                checked={selectAll}>
+                            </lightning-input>
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                      <div class="slds-truncate" title="Account Name">Account Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account ID">Account Id</div>
+                      </th>
+                </tr>
+                <template for:each={personsList} for:item="acc" for:index="index">
+                    <tr key={acc.Id} class="slds-hint-parent">
+                        <td data-label="Account Name">
+                            <div  class="slds-truncate" title={acc.Name}>
+                                <lightning-input class="label-hidden"
+                                    type="checkbox" label="e"
+                                    value={acc.Name} data-id={acc.checkStatus}
+                                    onchange={handleCheck}
+                                    checked={acc.checkStatus}
+                                    data-index={index}>
+                                </lightning-input>
+                            </div>                                 
+                        </td>
+                        <td  data-label="Account Name">
+                            <div  class="slds-truncate" title={acc.Name}>
+                                <a href="#" tabindex="-1"> {acc.Name}   </a>
+                            </div>
+                        </td>
+
+                        <td  data-label="Account Name">
+                            <div  class="slds-truncate" title={acc.Name}>
+                                <a href="#" tabindex="-1"> {acc.Id}   </a>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </table>
+        </div>
+    </lightning-card>
+</template>
+
+
