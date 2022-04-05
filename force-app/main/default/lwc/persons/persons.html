@@ -1,8 +1,15 @@
 <template>
    
-    <lightning-card title='Persons List' icon-name="custom:custom63">
+    <lightning-card class=" slds-grid slds-grid_vertical-align-center slds-grid_align-center" title='Persons List' icon-name="custom:custom63">
+        
         <template if:true={showPills}>
-            <c-util-Lightning-Pill-Container get-persons-list={accountList} handle-pill={handleItemRemove}></c-util-Lightning-Pill-Container>
+            <div  class="slds-truncate" title="Selected Pill Count">
+                <a href="#" tabindex="-1">Selected Pill Count: {pillCount}</a>
+            </div>
+            <c-util-Lightning-Pill-Container 
+                get-persons-list={accountList} 
+                handle-pill={handleItemRemove}>
+            </c-util-Lightning-Pill-Container>
         </template>
         <div class="slds-m-around_medium">
             <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
@@ -45,7 +52,7 @@
 
                         <td  data-label="Account Name">
                             <div  class="slds-truncate" title={acc.Name}>
-                                <a href="#" tabindex="-1"> {acc.Id}   </a>
+                                <a href="#" tabindex="-1"> {acc.Id} </a>
                             </div>
                         </td>
                     </tr>

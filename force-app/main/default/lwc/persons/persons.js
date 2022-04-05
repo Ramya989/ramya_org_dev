@@ -4,7 +4,7 @@ import getPersonsData from '@salesforce/apex/PersonsController.PersonsData';
 
 export default class Persons extends LightningElement {
  @track personsList = [];
- @track  accountList = []; 
+ @track accountList = []; 
  @track selectAll = false;
 
  connectedCallback(){
@@ -21,44 +21,49 @@ export default class Persons extends LightningElement {
     .catch();
  }
 
+ get pillCount() {
+    
+   return this.accountList.length;
+ }
+
  get showPills() {
-    return this.accountList.length>0;
+    return this.accountList.length > 0;
   }
 
  handleCheck(event) {   
     
    if(event.target.checked ){  
-    this.accountList.push({
-        name: event.target.value,      
-        label: event.target.value       
-    })
-    console.log(event.target)
-    console.log(event.target.getAttribute('data-id'))
-   } else {
-    let listndex = -1;
-    for (let index = 0; index < this.accountList.length; index++) {
-        if(this.accountList[index].name === event.target.value){
-            listndex = index;
+        this.accountList.push({
+            name: event.target.value,      
+            label: event.target.value       
+        })
+        for (let item of this.personsList) {            
+            if(item.Name == event.target.value){
+                item.checkStatus =  true;
+            }
         }
-    }
-    if(listndex != -1){
-        this.accountList.splice(listndex, 1);
-    }    
+   } else {
+      for (let index = 0; index < this.accountList.length; index++) {
+          if(this.accountList[index].name === event.target.value){
+            this.accountList.splice(index, 1);
+          }
+      }
+      if(this.accountList.length === 0) this.selectAll = false;        
    }
  }
 
-  handleItemRemove(event) {    
+  handleItemRemove = (event) => {
     if (this.accountList[event.detail.index].name === event.detail.item.name)
       this.accountList.splice(event.detail.index, 1);
-    
-      for (let item of this.personsList) {       
-        if(item.Name === event.detail.item.name){
-            item.checkStatus = false;
+     for (let index = 0; index < this.personsList.length; index++) {   debugger;     
+        if(this.personsList[index].Name === event.detail.item.name){            
+            this.personsList[index].checkStatus = false;
         }
-      }
+    }
  }
 
  handleSelectAll(event) { 
+   this.accountList = [];
     for (let item of this.personsList) {
         item.checkStatus =  event.target.checked;
         if(event.target.checked){
