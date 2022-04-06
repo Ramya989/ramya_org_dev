@@ -1,6 +1,12 @@
 
 <template>
-   
-    <lightning-pill-container items={getPersonsList} onitemremove={handlePill}></lightning-pill-container>
-  
+    <template if:true={showPills}>
+        <div  class="slds-truncate" title="Selected Pill Count"> 
+            <a href="#" tabindex="-1"> Selected Pill Count: {pillCount}</a>            
+        </div>
+        <div>
+            <lightning-pill-container items={getPersonsList} onitemremove={handlePill}></lightning-pill-container>
+        </div>
+    </template>
+
 </template>

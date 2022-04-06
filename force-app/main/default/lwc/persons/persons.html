@@ -1,23 +1,21 @@
 <template>
    
-    <lightning-card class=" slds-grid slds-grid_vertical-align-center slds-grid_align-center" title='Persons List' icon-name="custom:custom63">
+    <lightning-card class=" slds-grid slds-grid_vertical-align-center slds-grid_align-center" title='Persons Lists' icon-name="custom:custom63">
         
-        <template if:true={showPills}>
-            <div  class="slds-truncate" title="Selected Pill Count">
-                <a href="#" tabindex="-1">Selected Pill Count: {pillCount}</a>
-            </div>
-            <c-util-Lightning-Pill-Container 
-                get-persons-list={accountList} 
-                handle-pill={handleItemRemove}>
-            </c-util-Lightning-Pill-Container>
-        </template>
+       
+        <c-util-Lightning-Pill-Container 
+            get-persons-list={accountList}
+            handle-pill={handleItemRemove}
+            pill-count = {pillCounts} >
+        </c-util-Lightning-Pill-Container>
+
         <div class="slds-m-around_medium">
             <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
                 <tr class="slds-line-height_reset">
                     <th class="" scope="col">
                         <div class="slds-truncate" >
-                            <lightning-input class="label-hidden"
-                                type="checkbox" label="e"
+                            <lightning-input label="w"
+                                type="checkbox"
                                 value={selectAll} 
                                 onchange={handleSelectAll}
                                 checked={selectAll}>
@@ -36,8 +34,8 @@
                         <td data-label="Account Name">
                             <div  class="slds-truncate" title={acc.Name}>
                                 <lightning-input class="label-hidden"
-                                    type="checkbox" label="e"
-                                    value={acc.Name} data-id={acc.checkStatus}
+                                    type="checkbox" label="w"
+                                    value={acc.Name} 
                                     onchange={handleCheck}
                                     checked={acc.checkStatus}
                                     data-index={index}>
@@ -61,5 +59,3 @@
         </div>
     </lightning-card>
 </template>
-
-

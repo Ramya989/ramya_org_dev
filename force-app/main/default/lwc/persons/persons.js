@@ -6,6 +6,7 @@ export default class Persons extends LightningElement {
  @track personsList = [];
  @track accountList = []; 
  @track selectAll = false;
+ @track showPills = 0;
 
  connectedCallback(){
     getPersonsData()
@@ -21,14 +22,10 @@ export default class Persons extends LightningElement {
     .catch();
  }
 
- get pillCount() {
-    
-   return this.accountList.length;
+ get pillCounts () {
+    let count = this.template.querySelector('c-util-Lightning-Pill-Container');     
+    return  count!=null ? count.showPillsCount() : 0;
  }
-
- get showPills() {
-    return this.accountList.length > 0;
-  }
 
  handleCheck(event) {   
     
@@ -50,12 +47,13 @@ export default class Persons extends LightningElement {
       }
       if(this.accountList.length === 0) this.selectAll = false;        
    }
+  
  }
 
   handleItemRemove = (event) => {
     if (this.accountList[event.detail.index].name === event.detail.item.name)
       this.accountList.splice(event.detail.index, 1);
-     for (let index = 0; index < this.personsList.length; index++) {   debugger;     
+     for (let index = 0; index < this.personsList.length; index++) {     
         if(this.personsList[index].Name === event.detail.item.name){            
             this.personsList[index].checkStatus = false;
         }

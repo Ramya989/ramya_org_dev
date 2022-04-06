@@ -1,0 +1,4 @@
+.THIS .label-hidden .slds-checkbox__label .slds-form-element__label{
+    display: none; 
+    visibility: hidden;
+}
