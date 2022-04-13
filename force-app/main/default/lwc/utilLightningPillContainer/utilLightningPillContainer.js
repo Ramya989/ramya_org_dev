@@ -3,7 +3,7 @@ import { LightningElement,api } from 'lwc';
 export default class UtilLightningPillCcontainer extends LightningElement {
     @api getPersonsList;
     @api handlePill;
-    @api pillCount;
+    @api pillCount; 
 
 
     @api showPillsCount() {

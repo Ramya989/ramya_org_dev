@@ -1,8 +1,30 @@
 <template>
-   
-    <lightning-card class=" slds-grid slds-grid_vertical-align-center slds-grid_align-center" title='Persons Lists' icon-name="custom:custom63">
-        
-       
+
+    <lightning-card  title='Persons Lists' icon-name="custom:custom63">
+
+        <div class="slds-grid slds-grid slds-wrap">
+            <div class="slds-size_1-of-4 slds-text-align_center slds-m-around_x-small">
+                <lightning-button  label="Add fiter" variant="brand" onclick={addTableFilter} ></lightning-button>
+            </div>
+            <template if:true={isFilter}>
+                <div class="slds-size_1-of-4 slds-text-align_center slds-m-around_x-small">
+                    <lightning-input
+                                type="search"  
+                                variant="label-hidden"
+                                label="Search"
+                                placeholder="Please enter key"
+                                onchange={handleTableSearch}
+                                data-id="accountnameSearch">
+                    </lightning-input>
+                </div>
+            </template>            
+            <div class="slds-size_1-of-4 slds-text-align_center slds-m-around_x-small">
+                <c-edit-Persons
+                    get-persons-list={accountList}>
+                </c-edit-Persons>
+            </div>            
+        </div>
+
         <c-util-Lightning-Pill-Container 
             get-persons-list={accountList}
             handle-pill={handleItemRemove}
@@ -10,13 +32,13 @@
         </c-util-Lightning-Pill-Container>
 
         <div class="slds-m-around_medium">
-            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered " aria-labelledby="element-with-table-label other-element-with-table-label">
                 <tr class="slds-line-height_reset">
                     <th class="" scope="col">
                         <div class="slds-truncate" >
-                            <lightning-input label="w"
-                                type="checkbox"
-                                value={selectAll} 
+                            <lightning-input label="w" data-id="checkboxe" 
+                                type="checkbox" variant="label-hidden"
+                                value={selectAll} disabled={isSearch}
                                 onchange={handleSelectAll}
                                 checked={selectAll}>
                             </lightning-input>
@@ -27,15 +49,15 @@
                     </th>
                     <th class="" scope="col">
                         <div class="slds-truncate" title="Account ID">Account Id</div>
-                      </th>
+                    </th>
                 </tr>
-                <template for:each={personsList} for:item="acc" for:index="index">
+                <template for:each={recordList} for:item="acc" for:index="index">
                     <tr key={acc.Id} class="slds-hint-parent">
                         <td data-label="Account Name">
                             <div  class="slds-truncate" title={acc.Name}>
-                                <lightning-input class="label-hidden"
+                                <lightning-input variant="label-hidden"
                                     type="checkbox" label="w"
-                                    value={acc.Name} 
+                                    value={acc.Name} data-id={acc.Id}
                                     onchange={handleCheck}
                                     checked={acc.checkStatus}
                                     data-index={index}>
@@ -43,8 +65,8 @@
                             </div>                                 
                         </td>
                         <td  data-label="Account Name">
-                            <div  class="slds-truncate" title={acc.Name}>
-                                <a href="#" tabindex="-1"> {acc.Name}   </a>
+                            <div class="slds-truncate" title={acc.Id}>
+                                <a href="#" tabindex="-1"> {acc.Name} {acc.checkStatus}   </a>
                             </div>
                         </td>
 

@@ -1,0 +1,48 @@
+<template>
+    <template if:true={isEdit}>
+        <lightning-button  label="Edit" variant="brand" onclick={showModal} ></lightning-button>
+    </template>
+    <template if:true={openModal}>  
+        <div class="slds-modal slds-fade-in-open slds-backdrop">  
+          <div class="slds-modal__container">  
+            <!--HEADER Section-->  
+            <div class="slds-modal__header">  
+              <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+                variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+              </lightning-button-icon>  
+              <h2>Edit Account Details</h2>  
+            </div>
+            <!--Body Section-->  
+            <div class="slds-modal__content slds-p-around_medium">
+               <table class="slds-table slds-table_cell-buffer slds-table_bordered " aria-labelledby="element-with-table-label other-element-with-table-label">
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                    </tr>
+                    <template for:each={getPersonsList} for:item="acc" for:index="index">
+                        <tr key={acc.name} class="slds-hint-parent">
+                            <td  data-label="Account Name">
+                                <div class="slds-truncate" title={acc.name}>
+                                    <lightning-layout >
+                                        <lightning-input label="w" variant="label-hidden"
+                                            value={acc.label} onchange={saveModal} data-id={acc.name}
+                                            maxlength="100">
+                                        </lightning-input>
+                                    </lightning-layout>
+                                  
+                                </div>
+                            </td>                           
+                        </tr>
+                    </template>
+                </table>
+            </div>  
+            <!--Footer Section-->  
+            <div class="slds-modal__footer">  
+              <lightning-button  label="Save" variant="brand" onclick={closeModal}>  
+              </lightning-button>  
+            </div>  
+          </div>  
+        </div>  
+      </template> 
+</template>
